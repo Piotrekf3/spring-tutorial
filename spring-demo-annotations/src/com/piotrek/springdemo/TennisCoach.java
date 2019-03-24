@@ -2,7 +2,11 @@ package com.piotrek.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 public class TennisCoach implements Coach{
@@ -13,6 +17,16 @@ public class TennisCoach implements Coach{
     public TennisCoach(FortuneService theFortuneService) {
         fortuneService = theFortuneService;
     }*/
+
+    @PostConstruct
+    public void doMyStartupStuff() {
+        System.out.println("Startup stuff");
+    }
+
+    @PreDestroy
+    public void doMyCleanupStuff() {
+        System.out.println("Cleanup stuff");
+    }
 
     @Override
     public String getDailyWorkout() {
